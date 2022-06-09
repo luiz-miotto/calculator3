@@ -1,3 +1,28 @@
-#plus{
+
+
+#calculatorContainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#buttonsContainer{
+    display:flex;
     
+}
+.operand{ 
+    padding:40px ;
+    font-size: 20px;
+    
+}
+
+.operator{
+    padding: 40px;
+    font-size: 20px;
+    
+}
+
+.zeroButton{
+    font-size: 20px;
 }
