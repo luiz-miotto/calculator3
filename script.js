@@ -9,6 +9,7 @@ var plusCounter = 0;
 var minusCounter = 0;
 var divideCounter = 0;
 var multiplyCounter = 0;
+var equalsCounter = 0;
 /*
 var increment = function(){
     return function(counter){
@@ -33,18 +34,25 @@ addition function{
 
 
 */
+/*
+need to do:
+need to have solve issue with counter in producedisplayvalue getting deincrimented after first second value is entered
+*/
 
 function produceDisplayValue(keyValue){
-    if (counter <= 0){
+    if (counter <= 0 || equalsCounter ==1){
         displayValue = displayValue + keyValue;
         console.log(displayValue);
         inputDisplay.innerText = displayValue;
         console.log(`This is the value of ${counter}`)
         } else {
+            console.log(secondDisplayValue);
+            console.log(keyValue);
             secondDisplayValue = secondDisplayValue + keyValue;
             console.log(secondDisplayValue);
             inputDisplay.innerText = secondDisplayValue;   
             console.log(`This is the value of ${counter}`)
+        //    --counter
         }
 }
 
@@ -54,6 +62,9 @@ equal.addEventListener("click", () => {
     doMath();
     console.log("is equals working");
     console.log(secondDisplayValue);
+    equalsCounter = 0;
+    ++equalsCounter;
+    counter=0;
     
 });
 
@@ -64,35 +75,41 @@ function doMath(){
         secondDisplayValue = "";
         inputDisplay.innerText = displayValue;
         --plusCounter;
+        --equalsCounter;
          } else if (minusCounter >= 1){
              subtractedValue = subtract(displayValue,secondDisplayValue);
              displayValue = subtractedValue
              secondDisplayValue = "";
              inputDisplay.innerText = subtractedValue;
              --minusCounter;
+             --equalsCounter;
          } else if (multiplyCounter >= 1){
               multipliedValue = multiply(displayValue,secondDisplayValue);
               displayValue = multipliedValue
              secondDisplayValue = "";
              inputDisplay.innerText = multipliedValue;
              --multiplyCounter;
+             --equalsCounter;
          } else if (divideCounter >= 1){
              dividedValue = divide(displayValue,secondDisplayValue);
              displayValue = dividedValue
              secondDisplayValue = "";
             inputDisplay.innerText = dividedValue;
             --divideCounter;
+            --equalsCounter;
         };
 };
 
 var plus = document.getElementById("plus");
 plus.addEventListener("click", () =>{
     if (minusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
+        console.log(`displayValue is ${displayValue}. secondDisplayValue is ${secondDisplayValue}`)
         doMath();
       }
     ++counter;
     ++plusCounter;
     if (plusCounter == 2){
+        console.log(`displayValue is ${displayValue}. secondDisplayValue is ${secondDisplayValue}`)
         doMath();
     }
     console.log(`This is the value of ${counter}`);
@@ -139,80 +156,135 @@ divideButton.addEventListener("click", () =>{
     console.log(`This is the value of ${counter}`);
 });
 
+
+function postEqualsFunction(x){
+    displayValue = "";
+    secondDisplayValue = "";
+    inputDisplay.innerText = "";
+    produceDisplayValue(x);
+    --equalsCounter;
+    console.log(`equalsCounter is ${equalsCounter}`);
+}
+
 var one = document.getElementById("1");
 one.addEventListener("click", ()=>{
     let firstKeyValue = one.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(firstKeyValue);
+    } else{
     produceDisplayValue(firstKeyValue);
+    }
 });
 
 var two = document.getElementById("2");
 two.addEventListener("click", ()=>{
     let secondKeyValue = two.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(secondKeyValue);
+    } else{
     produceDisplayValue(secondKeyValue);
+    }
 });
 
 var three = document.getElementById("3");
 three.addEventListener("click", ()=>{
     let thirdKeyValue = three.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(thirdKeyValue);
+    } else{
     produceDisplayValue(thirdKeyValue);
+    }
 }); 
 
 var four = document.getElementById("4");
 four.addEventListener("click", () =>{
     let fourthKeyValue = four.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(fourthKeyValue);
+    } else{
     produceDisplayValue(fourthKeyValue);
+    }
 });
 
 var five = document.getElementById("5");
 five.addEventListener("click", () => {
     let fifthKeyValue = five.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(fifthKeyValue);
+    } else{
     produceDisplayValue(fifthKeyValue);
+    }
 })
 
 
 var six = document.getElementById("6");
 six.addEventListener("click", () => {
     let sixthKeyValue = six.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(sixthKeyValue);
+    } else{
     produceDisplayValue(sixthKeyValue);
+    }
 });
 
 var seven = document.getElementById("7");
 seven.addEventListener("click", () => {
     let seventhKeyValue = seven.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(seventhKeyValue);
+    } else{
     produceDisplayValue(seventhKeyValue);
+    }
 });
 
 var eight = document.getElementById("8");
 eight.addEventListener("click", () => {
     let eighthKeyValue = eight.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(eighthKeyValue);
+    } else{
     produceDisplayValue(eighthKeyValue);
+    }
 });
 
 var nine = document.getElementById("9");
 nine.addEventListener("click", () => {
     let ninthKeyValue = nine.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(ninthKeyValue);
+    } else{
     produceDisplayValue(ninthKeyValue);
+    }
 });
 
 var zero = document.getElementById("0");
 zero.addEventListener("click", () => {
     let zerothKeyValue = zero.id.toString();
+    if(equalsCounter == 1){
+        postEqualsFunction(zerothKeyValue);
+    } else{
     produceDisplayValue(zerothKeyValue);
+    }
 });
 
 var period = document.getElementById("period");
 period.addEventListener("click", () => {
     let periodKeyValue = ".";
+    if(equalsCounter == 1){
+        postEqualsFunction(periodKeyValue);
+    } else{
     produceDisplayValue(periodKeyValue);
+    }
 });
 
 
 
 var clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", () => {
-    inputDisplay.innerText = "";
+    
     displayValue = "";
     secondDisplayValue = "";
+    inputDisplay.innerText = "";
     console.log(displayValue)
     console.log(secondDisplayValue);
 });
@@ -241,7 +313,3 @@ function divide(x,y){
 }
 
 
- var sumFunction = document.getElementById("plus");
- sumFunction.addEventListener("click", () =>{
- console.log("testing plus sign")
- });
