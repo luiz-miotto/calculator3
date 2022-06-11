@@ -5,14 +5,67 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    flex-wrap:wrap;
+    
+    
 }
 
 #buttonsContainer{
     display:flex;
+    flex-wrap: flex;
+    flex-direction: column;
+    height:500px;
+    width:400px;
+}
+
+#topRow{
+    display:flex;
+
+    height: 100px;
+    width:400px;
+}
+
+#midldeRow{
+    display:flex;
+    flex-wrap:flex;
+    width:400px;
+    height:300px;
+    flex-direction:row;
+}
+
+#column7{
+    display:flex;
+    width:400px;
+    flex-direction: column;
+
+}
+
+#column8{
+    display:flex;
+    width:400px;
+    flex-direction: column;
     
 }
+
+#column9{
+    display:flex;
+    width:400px;
+    flex-direction: column;
+}
+
+#fourthColumn{
+    display:flex;
+    width:400px;
+    flex-direction: column;
+}
+
+#bottomRow{
+    display:flex;
+    height: 100px;
+    width:400px;
+}
 .operand{ 
-    padding:40px ;
+    padding: 40px; 
     font-size: 20px;
     
 }
@@ -24,5 +77,7 @@
 }
 
 .zeroButton{
+    padding: 40px 80px;
     font-size: 20px;
+    
 }
