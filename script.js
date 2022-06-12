@@ -10,6 +10,7 @@ var minusCounter = 0;
 var divideCounter = 0;
 var multiplyCounter = 0;
 var equalsCounter = 0;
+var secondValueCounter = 0;
 /*
 var increment = function(){
     return function(counter){
@@ -40,19 +41,33 @@ need to have solve issue with counter in producedisplayvalue getting deincriment
 */
 
 function produceDisplayValue(keyValue){
-    if (counter <= 0 || equalsCounter ==1){
+    if (counter <= 0 || equalsCounter == 1 || secondValueCounter < 1){
         displayValue = displayValue + keyValue;
         console.log(displayValue);
         inputDisplay.innerText = displayValue;
-        console.log(`This is the value of ${counter}`)
-        } else {
-            console.log(secondDisplayValue);
-            console.log(keyValue);
+        console.log(`This is the value of counter: ${counter}`);
+        console.log(`this is the value of equalsCounter: ${equalsCounter}`);
+        console.log(`this is the value of secondValueCounter: ${secondValueCounter}`);
+        --equalsCounter;
+        } else if(counter <= 0 || equalsCounter == 1 ){
+            displayValue = displayValue + keyValue;
+            console.log(displayValue);
+            inputDisplay.innerText = displayValue;
+            console.log(`This is the value of counter: ${counter}`);
+            console.log(`this is the value of equalsCounter: ${equalsCounter}`);
+            console.log(`this is the value of secondValueCounter: ${secondValueCounter}`);
+            --equalsCounter;
+            --counter;
+         } else {
+            console.log("below is the else for produceDisplayValue");
+            console.log(`This is the value of counter: ${counter}`);
+            console.log(`this is the value of equalsCounter: ${equalsCounter}`);
+            console.log(`this is the value of secondValueCounter: ${secondValueCounter}`);
             secondDisplayValue = secondDisplayValue + keyValue;
-            console.log(secondDisplayValue);
+            
             inputDisplay.innerText = secondDisplayValue;   
             console.log(`This is the value of ${counter}`)
-        //    --counter
+          
         }
 }
 
@@ -65,8 +80,28 @@ equal.addEventListener("click", () => {
     equalsCounter = 0;
     ++equalsCounter;
     counter=0;
+    console.log(`Test of equals function. Counter equals ${counter}`)
     
 });
+
+
+function postEqualsFunction(x){
+    displayValue = "";
+    secondDisplayValue = "";
+    inputDisplay.innerText = "";
+    produceDisplayValue(x);
+   // --equalsCounter;
+    console.log(`equalsCounter is ${equalsCounter}`);
+}
+
+/*
+function counterDeincrement(counter){
+    let i = 0;
+    while (i < 0){
+        --counter;
+    }
+}
+*/
 
 function doMath(){
     if (plusCounter >= 1){
@@ -75,7 +110,12 @@ function doMath(){
         secondDisplayValue = "";
         inputDisplay.innerText = displayValue;
         --plusCounter;
+       // minusCounter = 0;
+       // divideCounter = 0;
+       // multiplyCounter = 0;
+        --counter;
         --equalsCounter;
+        --secondValueCounter;
          } else if (minusCounter >= 1){
              subtractedValue = subtract(displayValue,secondDisplayValue);
              displayValue = subtractedValue
@@ -83,6 +123,11 @@ function doMath(){
              inputDisplay.innerText = subtractedValue;
              --minusCounter;
              --equalsCounter;
+             --counter;
+         //    divideCounter = 0;
+         //    multiplyCounter = 0;
+        //     plusCounter = 0;
+            --secondValueCounter;
          } else if (multiplyCounter >= 1){
               multipliedValue = multiply(displayValue,secondDisplayValue);
               displayValue = multipliedValue
@@ -90,6 +135,7 @@ function doMath(){
              inputDisplay.innerText = multipliedValue;
              --multiplyCounter;
              --equalsCounter;
+             --secondValueCounter;
          } else if (divideCounter >= 1){
              dividedValue = divide(displayValue,secondDisplayValue);
              displayValue = dividedValue
@@ -97,11 +143,13 @@ function doMath(){
             inputDisplay.innerText = dividedValue;
             --divideCounter;
             --equalsCounter;
+            --secondValueCounter;
         };
 };
 
 var plus = document.getElementById("plus");
 plus.addEventListener("click", () =>{
+    --secondValueCounter;
     if (minusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
         console.log(`displayValue is ${displayValue}. secondDisplayValue is ${secondDisplayValue}`)
         doMath();
@@ -118,6 +166,7 @@ plus.addEventListener("click", () =>{
 
 var minus = document.getElementById("minus");
 minus.addEventListener("click", () =>{
+    --secondValueCounter;
     if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
         doMath();
       }
@@ -132,6 +181,7 @@ minus.addEventListener("click", () =>{
 
 var multiplyButton = document.getElementById("multiply");
 multiplyButton.addEventListener("click", () =>{
+    --secondValueCounter;
     if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
         doMath();
       }
@@ -145,6 +195,7 @@ multiplyButton.addEventListener("click", () =>{
 
 var divideButton = document.getElementById("divide");
 divideButton.addEventListener("click", () =>{
+    --secondValueCounter;
     if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
         doMath();
       }
@@ -157,18 +208,13 @@ divideButton.addEventListener("click", () =>{
 });
 
 
-function postEqualsFunction(x){
-    displayValue = "";
-    secondDisplayValue = "";
-    inputDisplay.innerText = "";
-    produceDisplayValue(x);
-    --equalsCounter;
-    console.log(`equalsCounter is ${equalsCounter}`);
-}
+
 
 var one = document.getElementById("1");
 one.addEventListener("click", ()=>{
     let firstKeyValue = one.id.toString();
+    ++secondValueCounter;
+    //--counter;
     if(equalsCounter == 1){
         postEqualsFunction(firstKeyValue);
     } else{
@@ -178,6 +224,8 @@ one.addEventListener("click", ()=>{
 
 var two = document.getElementById("2");
 two.addEventListener("click", ()=>{
+    ++secondValueCounter;
+    //--counter;
     let secondKeyValue = two.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(secondKeyValue);
@@ -188,6 +236,7 @@ two.addEventListener("click", ()=>{
 
 var three = document.getElementById("3");
 three.addEventListener("click", ()=>{
+    ++secondValueCounter;
     let thirdKeyValue = three.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(thirdKeyValue);
@@ -198,6 +247,7 @@ three.addEventListener("click", ()=>{
 
 var four = document.getElementById("4");
 four.addEventListener("click", () =>{
+    ++secondValueCounter;
     let fourthKeyValue = four.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(fourthKeyValue);
@@ -208,6 +258,7 @@ four.addEventListener("click", () =>{
 
 var five = document.getElementById("5");
 five.addEventListener("click", () => {
+    ++secondValueCounter;
     let fifthKeyValue = five.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(fifthKeyValue);
@@ -219,6 +270,7 @@ five.addEventListener("click", () => {
 
 var six = document.getElementById("6");
 six.addEventListener("click", () => {
+    ++secondValueCounter;
     let sixthKeyValue = six.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(sixthKeyValue);
@@ -229,6 +281,7 @@ six.addEventListener("click", () => {
 
 var seven = document.getElementById("7");
 seven.addEventListener("click", () => {
+    ++secondValueCounter;
     let seventhKeyValue = seven.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(seventhKeyValue);
@@ -239,6 +292,7 @@ seven.addEventListener("click", () => {
 
 var eight = document.getElementById("8");
 eight.addEventListener("click", () => {
+    ++secondValueCounter;
     let eighthKeyValue = eight.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(eighthKeyValue);
@@ -249,6 +303,7 @@ eight.addEventListener("click", () => {
 
 var nine = document.getElementById("9");
 nine.addEventListener("click", () => {
+    ++secondValueCounter;
     let ninthKeyValue = nine.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(ninthKeyValue);
@@ -259,6 +314,7 @@ nine.addEventListener("click", () => {
 
 var zero = document.getElementById("0");
 zero.addEventListener("click", () => {
+    ++secondValueCounter;
     let zerothKeyValue = zero.id.toString();
     if(equalsCounter == 1){
         postEqualsFunction(zerothKeyValue);
@@ -269,6 +325,7 @@ zero.addEventListener("click", () => {
 
 var period = document.getElementById("period");
 period.addEventListener("click", () => {
+    ++secondValueCounter;
     let periodKeyValue = ".";
     if(equalsCounter == 1){
         postEqualsFunction(periodKeyValue);
